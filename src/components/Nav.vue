@@ -23,7 +23,7 @@
         class="search"
       />
 
-      <div class="btn-group u-flex">
+      <div class="btn-group u-flex" style="margin-left: auto;">
         <router-link to="/login" class="login">登录</router-link>
         <el-button size="small" type="primary">免费注册</el-button>
       </div>
@@ -67,6 +67,7 @@ export default {
 }
 .nav-del-wrapper {
   padding-top: 3px;
+  flex-shrink: 0;
 }
 .nav-menu {
   padding-left: 65px;
@@ -89,6 +90,7 @@ export default {
 /deep/ .search {
   margin-left: auto;
   width: 170px;
+  flex-shrink: 0;
   .el-icon-search {
     color: #657189;
   }
@@ -120,6 +122,6 @@ export default {
   padding-right: 20px;
   margin-right: 20px;
   padding-left: 20px;
-  margin-left: 130px;
+  // margin-left: 130px;
 }
 </style>

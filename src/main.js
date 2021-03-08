@@ -12,6 +12,7 @@ Vue.use(ElementUI.Input)
 Vue.use(ElementUI.Carousel)
 Vue.use(ElementUI.CarouselItem)
 Vue.use(ElementUI.Link)
+Vue.use(ElementUI.Backtop)
 
 Vue.config.productionTip = false
 

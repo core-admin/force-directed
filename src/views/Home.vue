@@ -4,9 +4,13 @@
     <Nav />
     <!-- banner轮播 -->
     <div class="swiper">
-      <el-carousel height="650px" arrow="never" indicator-position :interval="4000">
-        <el-carousel-item v-for="(item, index) in swiperList" :key="index">
-          <img :src="item" :alt="item" />
+      <el-carousel autoplay height="650px" arrow="never" indicator-position :interval="4000">
+        <el-carousel-item v-for="(item, index) in swiperBannerList" :key="index">
+          <img :src="item.cover" :alt="item.title" />
+          <div class="swiper-slider">
+            <h2>{{ item.title }}</h2>
+            <router-link to="/" class="button-plain">查看详情</router-link>
+          </div>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -87,23 +91,221 @@
           >
           <el-button style="margin-top: 65px" size="small" type="primary">了解更多</el-button>
         </div>
+        <div class="change-view">
+          <div class="change-item active">基础教育</div>
+          <div class="change-item">高等教育</div>
+          <div class="change-item">在线教育</div>
+          <div class="change-item">培训机构</div>
+          <div class="change-item">内部培训</div>
+        </div>
+        <div class="product">
+          <img src="../assets/img/product1.png" alt="" />
+          <img src="../assets/img/product2.png" alt="" />
+          <img src="../assets/img/product3.png" alt="" />
+          <img src="../assets/img/product4.png" alt="" />
+        </div>
       </div>
     </div>
+    <!-- 服务案例 -->
+    <div class="plate-three">
+      <div class="container">
+        <h2>服务案例</h2>
+        <div class="u-flex u-col-top pro-introduce-wrapper">
+          <div class="inner">
+            <h3>山东省实验中学</h3>
+            <ul class="illustrate-wrap">
+              <li class="u-flex u-col-top illustrate">
+                <span class="label">行业类型：</span>
+                <span class="msg">教育</span>
+              </li>
+              <li class="u-flex u-col-top illustrate">
+                <span class="label">客户简介：</span>
+                <span class="msg">
+                  山东省实验中学位于山东省济南市，建校于1948年，是山东省首批省级重点学校、山东省省级规范化学校。山东省实验中学分主校（走读）、东校（寄宿）和西校（寄宿寄宿三个校区。
+                </span>
+              </li>
+              <li class="u-flex u-col-top illustrate">
+                <span class="label">服务历程：</span>
+                <span class="msg">
+                  Nullam tempor tortor in cursus gravida. Sed fermentum quam eu libero condimentum
+                  tincidunt. Suspendisse potenti. Sed consectetur, nunc sit amet auctor venenatis,
+                  eros lectus interdum urna, et gravida augue augue in purus. facilisis.
+                </span>
+              </li>
+              <li class="u-flex u-col-top illustrate">
+                <span class="label">使用产品：</span>
+                <div class="u-flex illustrate-link">
+                  <a href="javascript:;" class="u-flex u-flex ill-alink">
+                    <img src="../assets/img/face.png" alt="" />
+                    <span>人脸识别</span>
+                  </a>
+                  <a href="javascript:;" class="u-flex ill-alink">
+                    <img src="../assets/img/icon_littlelockchain.png" alt="" />
+                    <span>区块链</span>
+                  </a>
+                  <a href="javascript:;" class="u-flex ill-alink">
+                    <img src="../assets/img/icon_knowledge.png" alt="" />
+                    <span>知识图谱</span>
+                  </a>
+                  <a href="javascript:;" class="u-flex ill-alink">
+                    <img src="../assets/img/icon_voice.png" alt="" />
+                    <span>语音识别</span>
+                  </a>
+                  <a href="javascript:;" class="u-flex ill-alink">
+                    <img src="../assets/img/icon_nuture.png" alt="" />
+                    <span>自然语言处理</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="pro-introduce-img">
+            <img src="../assets/img/pro-introduce.png" alt="" />
+          </div>
+        </div>
+        <div class="case-swiper-wrap">
+          <el-carousel
+            :autoplay="false"
+            height="125px"
+            arrow="never"
+            :interval="4000"
+            indicator-position="none"
+            ref="caseSwiper"
+          >
+            <el-carousel-item v-for="(item, index) in swiperCaseList" :key="index">
+              <div class="u-flex u-row-between caseview">
+                <div
+                  class="u-flex u-row-center case-item"
+                  :class="i === 0 ? 'active' : ''"
+                  v-for="(_case, i) in item.caseCover"
+                  :key="i"
+                >
+                  <img :src="_case" />
+                </div>
+              </div>
+            </el-carousel-item>
+          </el-carousel>
+          <div
+            class="carousel-operation carousel-operation-prev"
+            @click="handleCarouselChange('prev')"
+          ></div>
+          <div
+            class="carousel-operation carousel-operation-next"
+            @click="handleCarouselChange('next')"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 动态 -->
+    <div class="plate-four">
+      <div class="container">
+        <h3>天健云动态</h3>
+        <div class="u-flex u-col-top plate-four-container">
+          <div class="activity">
+            <p class="tip-title">最新活动</p>
+            <div
+              class="u-flex u-row-right activity-item"
+              :style="{
+                backgroundImage: `url(${require('@/assets/img/activity_bg_1.png')})`,
+                paddingRight: '36px'
+              }"
+            >
+              <a href="javascript:;">新人启动计划</a>
+            </div>
+            <div
+              class="u-flex activity-item"
+              :style="{
+                backgroundImage: `url(${require('@/assets/img/activity_bg_2.png')})`,
+                paddingLeft: '53px'
+              }"
+            >
+              <a href="javascript:;">年底回馈</a>
+            </div>
+          </div>
+          <div class="inner">
+            <p class="u-flex u-row-between tip-title">
+              <span>公司最新动态</span>
+              <a href="javascript:;" class="look-more">查看更多</a>
+            </p>
+            <div class="u-flex news-list">
+              <a href="javascript:;" class="hidden-text news-link active"
+                >共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合</a
+              >
+              <span class="time">2020-12-17</span>
+            </div>
+            <div class="u-flex news-list">
+              <a href="javascript:;" class="hidden-text news-link"
+                >共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合</a
+              >
+              <span class="time">2020-12-17</span>
+            </div>
+            <div class="u-flex news-list">
+              <a href="javascript:;" class="hidden-text news-link"
+                >共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合</a
+              >
+              <span class="time">2020-12-17</span>
+            </div>
+            <div class="u-flex news-list">
+              <a href="javascript:;" class="hidden-text news-link"
+                >共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合</a
+              >
+              <span class="time">2020-12-17</span>
+            </div>
+            <div class="u-flex news-list">
+              <a href="javascript:;" class="hidden-text news-link"
+                >共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合</a
+              >
+              <span class="time">2020-12-17</span>
+            </div>
+            <div class="u-flex news-list">
+              <a href="javascript:;" class="hidden-text news-link"
+                >共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合共建全场景智慧学校，加速人工智能和教育产业相结合业相结合业相结合</a
+              >
+              <span class="time">2020-12-17</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 即刻上云 -->
+    <div class="u-flex-col u-col-center u-row-center plate-five">
+      <h2>即刻上云</h2>
+      <p class="message">快速指引，轻松上手</p>
+      <a href="javascript:;" class="button-plain">免费注册</a>
+    </div>
+
+    <Footer />
+
+    <operation-tips />
   </div>
 </template>
 
 <script>
 import Nav from '../components/Nav.vue'
+import Footer from '../components/Footer.vue'
+import OperationTips from '../components/OperationTips.vue'
 export default {
   name: 'Home',
   components: {
-    Nav
+    Nav,
+    Footer,
+    OperationTips
   },
   data() {
-    const swiperList = [
-      require('@/assets/img/home_bg_banner.png'),
-      require('@/assets/img/home_bg_banner.png'),
-      require('@/assets/img/home_bg_banner.png')
+    const swiperBannerList = [
+      {
+        cover: require('@/assets/img/home_bg_banner.png'),
+        title: '以数赋智•云启未来'
+      },
+      {
+        cover: require('@/assets/img/home_bg_banner.png'),
+        title: '以数赋智•云启未来'
+      },
+      {
+        cover: require('@/assets/img/home_bg_banner.png'),
+        title: '以数赋智•云启未来'
+      }
     ]
     const infrastructureProductsList = [
       {
@@ -157,10 +359,27 @@ export default {
         msg: '快速实现一种语言到另一种语言的自动'
       }
     ]
+    const swiperCaseList = [
+      {
+        caseCover: [
+          require('@/assets/img/case1.png'),
+          require('@/assets/img/case2.png'),
+          require('@/assets/img/case3.png'),
+          require('@/assets/img/case4.png'),
+          require('@/assets/img/case5.png')
+        ]
+      }
+    ]
     return {
-      swiperList,
+      swiperBannerList,
       infrastructureProductsList,
-      projectList
+      projectList,
+      swiperCaseList
+    }
+  },
+  methods: {
+    handleCarouselChange(type) {
+      this.$refs.caseSwiper[type]()
     }
   }
 }
@@ -170,6 +389,37 @@ export default {
 .swiper {
   position: relative;
   height: 650px;
+  .swiper-slider {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -600px;
+    position: absolute;
+    width: 1200px;
+    box-sizing: border-box;
+    padding-left: 90px;
+    h2 {
+      color: #ffffff;
+      letter-spacing: 6px;
+      font-weight: 500;
+      font-size: 50px;
+      margin-top: 166px;
+    }
+  }
+}
+.button-plain {
+  display: inline-block;
+  line-height: 38px;
+  white-space: nowrap;
+  background-color: transparent;
+  padding: 0 30px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+  margin-top: 50px;
 }
 /deep/ .el-carousel__indicators--horizontal {
   width: 1200px;
@@ -184,6 +434,8 @@ export default {
   width: 1200px;
   box-sizing: border-box;
   margin: 0 auto;
+  position: relative;
+  flex-shrink: 0;
 }
 .row-one {
   position: relative;
@@ -295,12 +547,244 @@ export default {
     font-weight: 500;
   }
   .inner {
-    padding-top: 82px;
+    padding-top: 70px;
     position: relative;
     .msg {
       font-size: 14px;
       margin-top: 27px;
     }
+  }
+}
+.product {
+  margin-top: 120px;
+  > img + img {
+    margin-left: 82px;
+  }
+}
+.change-view {
+  padding-right: 50px;
+  position: absolute;
+  top: 175px;
+  right: 0;
+  .change-item {
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 3px;
+      background-color: #377ffc;
+      bottom: -5px;
+      left: 0;
+      display: none;
+    }
+    & + .change-item {
+      margin-top: 40px;
+    }
+    &.active {
+      color: #377ffc;
+      &::after {
+        display: block;
+      }
+    }
+  }
+}
+.plate-three {
+  background: url('../assets/img/home_bg_service.png') no-repeat center top / 100% 100%;
+  h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    color: @text-theme-color;
+    padding: 99px 0 55px;
+  }
+  .pro-introduce-wrapper {
+    border-radius: 3px;
+    box-shadow: 0px 2px 5px 0px rgba(26, 114, 163, 0.04), 0px -2px 5px 0px rgba(26, 114, 163, 0.04);
+    background-color: #fff;
+    padding: 30px 30px 40px 40px;
+  }
+  .inner {
+    color: @text-theme-color;
+    font-size: 14px;
+    h3 {
+      font-size: 24px;
+      padding-top: 10px;
+    }
+  }
+  .pro-introduce-img {
+    flex-shrink: 0;
+    width: 408px;
+    height: 310px;
+    > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .illustrate-wrap {
+    margin-top: 25px;
+    padding-right: 50px;
+    .illustrate {
+      line-height: 24px;
+      & + .illustrate {
+        margin-top: 20px;
+      }
+    }
+    .label {
+      font-weight: 700;
+      width: 85px;
+      margin-right: 20px;
+      flex-shrink: 0;
+      position: relative;
+      box-sizing: border-box;
+      padding-left: 15px;
+      &::before {
+        content: '';
+        border: 2px solid #616161;
+        position: absolute;
+        left: 0;
+        top: 9px;
+      }
+    }
+    .msg {
+      line-height: 24px;
+    }
+    .ill-alink {
+      color: #377ffc;
+      & + .ill-alink {
+        margin-left: 30px;
+        > img {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+.case-swiper-wrap {
+  padding-top: 35px;
+  padding-bottom: 60px;
+  position: relative;
+  .carousel-operation {
+    position: absolute;
+    top: 68px;
+    width: 56px;
+    height: 64px;
+    z-index: 2;
+    cursor: pointer;
+    &-prev {
+      background-image: url('../assets/img/icon_hover_left.png');
+      left: -10px;
+    }
+    &-next {
+      background-image: url('../assets/img/icon_hover_right.png');
+      right: -10px;
+    }
+  }
+}
+.caseview {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+.case-item {
+  flex: 1;
+  height: 124px;
+  background-color: #f8f9fc;
+  &.active {
+    background-color: #fff;
+  }
+}
+.plate-four {
+  background-color: #fff;
+  background-image: url('../assets/img/icon_littlecircular.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left top;
+  color: @text-theme-color;
+  padding-bottom: 200px;
+  h3 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    padding: 100px 0 55px;
+  }
+  .tip-title {
+    font-size: 20px;
+    padding-bottom: 40px;
+  }
+  .activity {
+    flex-shrink: 0;
+  }
+  .activity-item {
+    box-sizing: border-box;
+    width: 438px;
+    height: 140px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+
+    > a {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 500;
+    }
+    & + .activity-item {
+      margin-top: 30px;
+    }
+  }
+  .inner {
+    margin-left: 100px;
+    flex: 1;
+    .news-list {
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e3e9f3;
+      & + .news-list {
+        margin-top: 22px;
+      }
+    }
+    .news-link {
+      color: @text-theme-color;
+      flex-wrap: wrap;
+      width: 500px;
+      font-size: 14px;
+      &.active {
+        color: #377ffc;
+      }
+    }
+    .time {
+      width: 150px;
+      flex-shrink: 0;
+      text-align: right;
+      font-size: 16px;
+      color: #999999;
+    }
+    .look-more {
+      padding-right: 22px;
+      background: url('../assets/img/icon_defult_more.png') no-repeat right center / 10px 16px;
+      font-size: 16px;
+      color: @text-theme-color;
+    }
+  }
+}
+.plate-five {
+  background: url('../assets/img/home_bg_cloud.png') no-repeat center top / cover;
+  height: 228px;
+  h2 {
+    color: #fff;
+    font-size: 32px;
+  }
+  > .message {
+    color: #fff;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  > .button-plain {
+    margin-top: 25px;
+    line-height: 32px;
+    color: @text-theme-color;
+    background-color: #fff;
   }
 }
 </style>
