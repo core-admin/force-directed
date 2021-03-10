@@ -7,8 +7,17 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/force-directed'
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/force-directed',
+    name: 'ForceDirected',
+    component: () => import('@/views/ForceDirected.vue')
   }
 ]
 
