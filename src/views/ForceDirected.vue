@@ -77,11 +77,24 @@ export default {
       })
     },
     //添加文字
-    addSpriteText(node) {
-      const sprite = new SpriteText(node.name)
+    addSpriteText({ name, level }) {
+      const sprite = new SpriteText(name)
       sprite.color = '#fff'
-      sprite.textHeight = 10
-      sprite.position.set(0, 12, 0)
+      sprite.textHeight = 20
+      sprite.fontSize = 100
+      switch (level) {
+        case 0:
+          sprite.position.set(0, 80, 0)
+          break
+        case 1:
+          sprite.position.set(0, 40, 0)
+          break
+        case 3:
+          sprite.position.set(0, 30, 0)
+          break
+        default:
+          sprite.position.set(0, 12, 0)
+      }
       return sprite
     },
     initForceGraph3D(gData) {
@@ -92,19 +105,26 @@ export default {
         .nodeResolution(50)
         .backgroundColor('#000')
         .nodeThreeObjectExtend(false)
-        .nodeThreeObject(({ icon, level }) => {
+        .nodeThreeObject(node => {
+          const { icon, level } = node
           const imgTexture = new THREE.TextureLoader().load(icon)
           const material = new THREE.SpriteMaterial({ map: imgTexture })
           const sprite = new THREE.Sprite(material)
           switch (level) {
             case 0:
-              sprite.scale.set(100, 100)
+              sprite.scale.set(140, 140)
+              sprite.add(this.addSpriteText(node))
               break
             case 1:
-              sprite.scale.set(60, 60)
+              sprite.scale.set(70, 70)
+              sprite.add(this.addSpriteText(node))
+              break
+            case 2:
+              sprite.scale.set(50, 50)
               break
             default:
-              sprite.scale.set(30, 30)
+              sprite.scale.set(10, 10)
+              break
           }
           return sprite
         })

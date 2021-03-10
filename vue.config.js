@@ -12,6 +12,7 @@ function addStyleResource(rule) {
 }
 
 module.exports = {
+  publicPath: './',
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
